@@ -95,6 +95,13 @@ def _convert_job(job: Job, options: Options, cancel: Event) -> Result:
             profile = run_worker(
                 _request(job, options, "inspect"), Path(tmp), options.timeout, cancel
             )
+        if profile["ocr_pages"] and not profile["needs_ocr"]:
+            logger.warning(
+                "{}: pages {} look scanned but the text layer is used; pass --ocr=always"
+                " to OCR the whole document",
+                job.source.name,
+                profile["ocr_pages"],
+            )
         engines = candidates(job.requested, profile, options)
         job.output.parent.mkdir(parents=True, exist_ok=True)
         for engine in engines:
@@ -110,6 +117,10 @@ def _convert_job(job: Job, options: Options, cancel: Event) -> Result:
                 continue
             result.attempts.append(Attempt(engine, "success", round(time.monotonic() - started, 3)))
             result.status, result.strategy = "success", engine
+            if job.requested != "auto" and engine != job.requested:
+                logger.warning(
+                    "{}: {} failed; {} wrote {}", job.source.name, job.requested, engine, job.output
+                )
             return result
         result.error = "all conversion strategies failed"
     except Exception as exc:  # noqa: BLE001 - one bad document must not abort the batch.

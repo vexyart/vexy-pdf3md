@@ -5,6 +5,10 @@ from pathlib import Path
 
 import pymupdf
 
+# Whole-document OCR is required only when this share of selected pages looks scanned.
+# One screenshot page in a long text document must not send the text layer through OCR.
+OCR_PAGE_SHARE = 0.2
+
 
 def select_pages(value: str, count: int) -> list[int]:
     """Parse one-based inclusive ranges, preserving document order without duplicates."""
@@ -34,7 +38,11 @@ def open_pdf(source: str, password: str = "") -> pymupdf.Document:
 
 
 def inspect(source: str, options: dict) -> dict:
-    """Check every selected page: covers with text must not conceal scanned interiors."""
+    """Check every selected page: covers with text must not conceal scanned interiors.
+
+    Pages that look scanned are always listed in ``ocr_pages``; ``needs_ocr`` is set only
+    when they reach ``OCR_PAGE_SHARE`` of the selection. Use ``ocr=always`` otherwise.
+    """
     counts, scanned = [], []
     with open_pdf(source, options["password"]) as doc:
         pages = select_pages(options["pages"], len(doc))
@@ -57,7 +65,7 @@ def inspect(source: str, options: dict) -> dict:
         "characters": sum(counts),
         "page_characters": counts,
         "ocr_pages": scanned,
-        "needs_ocr": bool(scanned),
+        "needs_ocr": bool(scanned) and len(scanned) >= OCR_PAGE_SHARE * len(pages),
     }
 
 

@@ -105,7 +105,35 @@ def test_inspection_detects_scan_after_text_cover(scan, tmp_path):
         doc.save(mixed)
     profile = inspect(str(mixed), asdict(Options()))
     assert profile["ocr_pages"] == [2]
+    assert profile["needs_ocr"]
     assert profile["characters"] > 40
+
+
+def test_isolated_image_page_does_not_force_whole_document_ocr(scan, tmp_path):
+    from dataclasses import asdict
+
+    import pymupdf
+
+    mixed = tmp_path / "mostly-text.pdf"
+    with pymupdf.open() as doc, pymupdf.open(scan) as scan_doc:
+        for _ in range(5):
+            doc.new_page().insert_text((72, 72), "Ordinary text page. " * 10)
+        doc.insert_pdf(scan_doc)
+        doc.save(mixed)
+    profile = inspect(str(mixed), asdict(Options()))
+    assert profile["ocr_pages"] == [6]
+    assert not profile["needs_ocr"]
+    result = convert(mixed, strategies="pymupdf", fallback=False)
+    assert result.ok, result.to_dict()
+
+
+def test_sibling_strategies_are_not_fallback_candidates(monkeypatch):
+    monkeypatch.setattr("vexy_pdf3md.selection.available", lambda name: True)
+    profile = {"needs_ocr": False}
+    single = candidates("docling", profile, Options(strategies=("docling",)))
+    assert single == ["docling", "markit", "pymupdf", "pdf22md", "tesseract"]
+    paired = candidates("docling", profile, Options(strategies=("markit", "docling")))
+    assert paired == ["docling", "pymupdf", "pdf22md", "tesseract"]
 
 
 @pytest.mark.optional

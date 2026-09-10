@@ -99,14 +99,38 @@ explicit single-file symlink is resolved to its target.
 - Native crashes, timeout, nonzero exit, empty output, replacement-character corruption,
   and substantial text loss trigger fallback. The default retention threshold is 50%
   of the PDF's alphanumeric text layer, before media is appended.
-- All selected pages are inspected. Detection and length checks are heuristics;
-  they cannot prove complete or correct OCR. Use `--ocr=always` when automatic routing
-  misses scanned content. `--ocr=never` deliberately permits text-layer-only extraction.
+- All selected pages are inspected. A document is routed to OCR only when at least
+  20% of the selected pages look scanned; a lone screenshot page in a long text document
+  produces a warning instead. Detection and length checks are heuristics; they cannot
+  prove complete or correct OCR. Use `--ocr=always` when automatic routing misses
+  scanned content. `--ocr=never` deliberately permits text-layer-only extraction.
+- With several strategies requested, a failed strategy never falls back to one of its
+  siblings: those already get their own output, so the file would be a duplicate under
+  a misleading suffix. A warning names the actual backend whenever it differs.
 
 PyMuPDF's basic fallback preserves text blocks and infers larger-font headings.
 It does not reconstruct sophisticated tables. For difficult layouts, compare outputs
 or request Docling. Image-only documents still require usable OCR text: exporting page
 images alone does not count as successful Markdown conversion.
+
+## Engine comparison
+
+Measured on 123 Microsoft localization style guides (text-layer PDFs, 30–100 pages,
+59 in non-Latin scripts), each converted with every strategy. Only English OCR models
+were installed, so OCR ratings cover text-layer input, not scans.
+
+| Strategy | Rating | Observed |
+| --- | --- | --- |
+| markit | ★★★★☆ default | Tables, reflowed paragraphs, running headers/footers dropped. Loses 4–22% of Greek and Indic letters (conjuncts, pre-base vowels), joins hyphenated words, shows `312x90pt` image placeholders, may emit U+FFFD for fonts without Unicode maps. |
+| pymupdf | ★★★☆☆ most complete text | Keeps every mapped glyph, font-size headings, page footers, and hard line breaks. No tables. Missed inline Cyrillic runs in one Serbian guide that markit recovered. |
+| pdf22md | ★★☆☆☆ | Text equals PyMuPDF's layer, but one line per text run, no headings or tables, footers kept. Vision OCR turned Cyrillic into Latin lookalikes when routing forced OCR. |
+| tesseract | ★☆☆☆☆ on text PDFs | About 5% of words lost and 8% garbage on Latin scripts; non-Latin scripts unreadable without language packs. Only for real scans. |
+| docling | not rated | Not installed during the run: all 123 `.docling.md` files were byte-identical markit fallbacks, which prompted the sibling-fallback rule above. |
+
+Best choice per guide: markit for 110 documents, PyMuPDF for the Greek and ten Indic
+guides where markit dropped script letters, and for two Bengali/Konkani guides whose
+fonts lack Unicode maps. One Kyrgyz guide was misrouted to OCR by a single screenshot
+page; the page-share threshold above fixes that.
 
 ## Options
 

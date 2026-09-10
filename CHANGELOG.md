@@ -5,6 +5,13 @@ this_file: CHANGELOG.md
 
 ## Unreleased
 
+- Route a document to OCR only when at least 20% of selected pages look scanned;
+  isolated image pages now log a warning instead of forcing whole-document OCR.
+- Never fall back to a sibling strategy of one multi-strategy run; warn whenever the
+  actual backend differs from the requested suffix.
+- Add the `all` extra (`uv pip install -e '.[all]'`) and an engine comparison in README
+  measured on 123 localization style guides.
+
 - Generate and import gitignored `__version__.py` with the hatch-vcs build hook.
 - Add `publish.sh`: validate, clean generated dirt, commit/tag via `uvx gitnextver`,
   verify pushes, build fresh tagged artifacts, and upload with `uv publish`.

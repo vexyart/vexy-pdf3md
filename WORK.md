@@ -3,6 +3,21 @@ this_file: WORK.md
 ---
 # Work log
 
+## Style-guide engine bake-off (2026-09-10)
+
+- Compared 615 outputs of 123 Microsoft style guides across markit, pymupdf, pdf22md,
+  tesseract, and docling. Metrics: alphanumeric retention against the PyMuPDF text
+  layer, per-script letter counts, U+FFFD, headings, table rows, footer lines, word loss.
+- All docling files were byte-identical to markit (Docling absent, silent fallback).
+  One Kyrgyz guide had all five outputs identical: page 38 (one screenshot) forced
+  whole-document Vision OCR, which lost every Cyrillic letter.
+- markit dropped 4–22% of Greek/Indic letters in 11 guides and emitted U+FFFD in two;
+  PyMuPDF kept them. PyMuPDF missed inline Cyrillic runs in the Serbian (Bosnia) guide.
+- Tesseract (English model only): ~5% words lost, ~8% garbage; never best.
+- Code: OCR page-share threshold, no sibling fallback, warnings, `all` extra; tests added.
+- Kept one Markdown per guide: markit for 110, PyMuPDF for 13; Kyrgyz regenerated
+  from its text layer with the fixed routing.
+
 ## Release workflow follow-up
 
 - Verified current hatch-vcs and uv publishing documentation and inspected the installed

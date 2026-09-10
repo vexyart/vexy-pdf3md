@@ -24,6 +24,9 @@ pdf3md = "vexy_pdf3md.cli:main"
 docling = [
     "docling>=2.126,<3",
 ]
+all = [
+    "vexy-pdf3md[docling]",
+]
 
 [build-system]
 requires = ["hatchling>=1.32", "hatch-vcs>=0.5"]

@@ -33,7 +33,10 @@ def candidates(requested: str, profile: dict, options: Options) -> list[str]:
                 "scanned PDF needs an OCR tool: install pdf22md, Tesseract, or vexy-pdf3md[docling]"
             )
     else:
-        ordered = [requested] + [s for s in ranked if s != requested and available(s)]
+        # Sibling strategies of one multi-strategy run get their own outputs, so falling
+        # back to them would only duplicate files under a misleading suffix.
+        siblings = set(options.strategies) if len(options.strategies) > 1 else {requested}
+        ordered = [requested] + [s for s in ranked if s not in siblings and available(s)]
     return ordered if options.fallback else ordered[:1]
 
 

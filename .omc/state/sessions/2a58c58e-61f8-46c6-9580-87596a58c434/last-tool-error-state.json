@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd _private/ms-styleguides && uv run --project /Users/adam/Developer/vcs3/github.vexyart/vexy-pdf3md python - <<'EOF'\\nimport re, json\\nfrom pathlib import Path\\nrows=json.load(open(\\\"/pri...",
+  "error": "Exit code 1\npymupdf likely missing content (markit extra - lost > 1%):\n  ell-grc [0.0597, 0.2627]\n  scc-bih [0.0091, 0.1111]\n  asm-ind [0.0233, 0.0512]\n  ara-sau [0.06, 0.084]\n  ben-ind [0.0165, 0.0394]\n  urd-pak [0.0835, 0.1032]\n  hau-nga [0.0, 0.0098]\n  sin-lka [0.0044, 0.014]\nmarkit nonlatin < 97% of pymupdf:\n  asm-ind 5690 5923 0.961\n  ben-ind 5770 6442 0.896\n  ell-grc 22183 26375 0.841\n  guj-ind 4500 5242 0.858\n  mal-ind 5377 5875 0.915\n  mar-ind 4717 5390 0.875\n  nep-npl 4209 5199 0.81\n  o...",
+  "timestamp": "2026-09-10T21:42:16.428Z",
+  "retry_count": 1
+}
