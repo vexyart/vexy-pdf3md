@@ -7,6 +7,12 @@
       "attempts": 0,
       "retryAt": "2026-09-11T10:29:49.795Z",
       "acknowledgedAt": "2026-09-11T10:29:50.689Z"
+    },
+    {
+      "sessionId": "6ca4b9ce-6cea-4e1c-abf3-3e08f9c606a5",
+      "attempts": 0,
+      "retryAt": "2026-09-11T17:32:54.700Z",
+      "acknowledgedAt": "2026-09-11T17:32:55.665Z"
     }
   ]
 }
