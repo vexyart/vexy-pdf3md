@@ -3,6 +3,29 @@ this_file: WORK.md
 ---
 # Work log
 
+## Multilingual OCR and Docling repair (2026-09-11)
+
+- Reproduced on a rasterised Polish pangram: Tesseract with the `eng` model garbled every
+  diacritic, `--language pol` failed (no `pol.traineddata`), Docling crashed before OCR.
+- Docling root causes on this host: a stale user-site pydantic 2.11.7 shadowed the 2.12.5
+  Docling was installed against (pipeline-options hash raised "Circular reference"), then
+  transformers imported a torchaudio built for an older torch and died in `dlopen`.
+  Upgraded the user-site pydantic; stubbed torchaudio in the Docling worker; pinned
+  `pydantic>=2.12` in the docling extra.
+- Third Docling failure was ours: `--tessdata-dir` also relocates `configs/tsv`, so a bare
+  model directory made Tesseract print plain text and Docling's TSV parser hit KeyError.
+  The cache now mirrors `configs/` and `tessconfigs/` from the system tessdata.
+- New `--lang` (`pl,en` or `pol+eng`) replaces `--language`/`--vision-languages`; codes
+  map onto Tesseract, Docling, and Vision. Missing models download from tessdata_fast.
+- Real corpus (15 Polish lab reports): 11 carry text layers of C0 control codes, so auto
+  routing sent them through markit and produced garbage. Inspection now flags such pages
+  as scanned, check_quality rejects such output, Docling uses full-page OCR for them.
+  After the fix auto picks pdf22md for all 11; tesseract output has 0.75–0.93 word overlap
+  with pdf22md and equal diacritic counts.
+- Result: `--strategies=all --lang=pl,en` yields identical correct Polish from tesseract,
+  pdf22md, and docling; markit/pymupdf refuse the scan by design. Tests: languages unit
+  tests plus real Polish OCR through tesseract and docling.
+
 ## Style-guide engine bake-off (2026-09-10)
 
 - Compared 615 outputs of 123 Microsoft style guides across markit, pymupdf, pdf22md,

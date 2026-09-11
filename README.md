@@ -24,7 +24,9 @@ Optional tools are discovered on PATH:
 - **pdf22md**: build/install [pdf22md](https://github.com/twardoch/pdf22md) on macOS
   for PDFKit extraction and Apple Vision OCR.
 - **Tesseract**: `brew install tesseract` on macOS; install the corresponding package
-  on other systems. Extra languages: `brew install tesseract-lang`.
+  on other systems. Language models named by `--lang` that are missing from the
+  system tessdata are downloaded from tessdata_fast into `~/.cache/vexy-pdf3md/tessdata`
+  on first use (`brew install tesseract-lang` works offline instead).
 - **Docling**: `uv sync --extra docling`, then use `uv run --extra docling ...`.
   The adapter uses Tesseract for OCR and may download layout/table models on first use.
   For an installed CLI, use `uv tool install '.[docling]'` from this checkout.
@@ -47,9 +49,12 @@ uv run vexy-pdf3md --input ./pdfs
 # Run independent strategies concurrently
 uv run vexy-pdf3md --input book.pdf --strategies=markit,pymupdf --media
 
-# OCR, selected pages, chosen language, and full-page images (including vectors)
+# OCR, selected pages, language hints, and full-page images (including vectors)
 uv run vexy-pdf3md --input scan.pdf --strategies=tesseract \
-  --pages=1-3,5 --language=eng+pol --media=pages --dpi=200
+  --pages=1-3,5 --lang=pl,en --media=pages --dpi=200
+
+# Every strategy side by side
+uv run vexy-pdf3md --input scan.pdf --strategies=all --lang=pl,en
 
 # Use Docling for layout/table reconstruction
 uv run --extra docling vexy-pdf3md --input book.pdf --strategies=docling
@@ -93,7 +98,9 @@ explicit single-file symlink is resolved to its target.
 ## Selection and fallback
 
 - Text-layer PDFs: **markit → pymupdf → pdf22md → tesseract → docling**.
-- Suspected scanned/mixed PDFs: **pdf22md → tesseract → docling**.
+- Suspected scanned/mixed PDFs: **pdf22md → tesseract → docling**. A page counts as
+  scanned when it is mostly image, or when its text layer is unreadable control codes
+  (subset fonts without a ToUnicode map).
 - Only installed candidates participate in automatic selection. An explicitly named
   missing backend produces a failed attempt before fallback.
 - Native crashes, timeout, nonzero exit, empty output, replacement-character corruption,
@@ -136,7 +143,7 @@ page; the page-share threshold above fixes that.
 
 | Option | Default | Meaning |
 | --- | --- | --- |
-| `--strategies` | `auto` | One tool or comma-separated independent variants |
+| `--strategies` | `auto` | One tool, `all`, or comma-separated independent variants |
 | `--workers` | `2` | Maximum simultaneous isolated jobs, 1–64 |
 | `--timeout` | `600` | Seconds per inspection, backend attempt, or media export |
 | `--fallback` | `True` | Try alternative eligible converters |
@@ -145,8 +152,7 @@ page; the page-share threshold above fixes that.
 | `--pages` | all | One-based ranges, e.g. `1-3,5`, sorted and deduplicated |
 | `--password` | empty | Password for encrypted PDFs; omitted from reports |
 | `--ocr` | `auto` | `auto`, `always`, or `never` |
-| `--language` | `eng` | Tesseract/Docling codes joined with `+` |
-| `--vision-languages` | `en` | pdf22md Vision codes joined with commas |
+| `--lang` | `eng` | OCR language hints as ISO 639-1 or Tesseract codes, e.g. `pl,en` or `pol+eng`; shared by Tesseract, Docling, and pdf22md Vision |
 | `--dpi` | `150` | OCR and media resolution, 72–600 |
 | `--min-text-ratio` | `0.5` | Minimum retained text-layer fraction, 0–1 |
 | `--verbose` | `False` | Backend diagnostics on stderr |

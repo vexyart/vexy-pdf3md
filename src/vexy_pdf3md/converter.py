@@ -10,7 +10,7 @@ from threading import Event
 
 from loguru import logger
 
-from .models import OCR_STRATEGIES, Attempt, BatchResult, Options, Result
+from .models import OCR_STRATEGIES, STRATEGIES, Attempt, BatchResult, Options, Result
 from .paths import Job, plan
 from .process import ConversionError, run_worker
 from .publication import publish
@@ -28,8 +28,7 @@ def convert(
     overwrite: bool = False,
     pages: str = "",
     password: str = "",
-    language: str = "eng",
-    vision_languages: str = "en",
+    lang: str = "eng",
     dpi: int = 150,
     ocr: str = "auto",
     min_text_ratio: float = 0.5,
@@ -44,6 +43,8 @@ def convert(
         if isinstance(strategies, str)
         else tuple(strategies)
     )
+    if names == ("all",):
+        names = STRATEGIES
     media_mode = "images" if media is True else "none" if media is False else media
     options = Options(
         names,
@@ -54,8 +55,7 @@ def convert(
         overwrite,
         str(pages),
         password,
-        language,
-        vision_languages,
+        lang,
         dpi,
         ocr,
         min_text_ratio,

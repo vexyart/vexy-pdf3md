@@ -4,7 +4,9 @@
 import os
 import shutil
 import sys
+from pathlib import Path
 
+import pymupdf
 import pytest
 
 from vexy_pdf3md import convert
@@ -142,3 +144,90 @@ def test_real_docling(scan):
     result = convert(scan, strategies="docling", fallback=False, timeout=120)
     assert result.ok, result.to_dict()
     assert "quick brown fox" in scan.with_suffix(".md").read_text()
+
+
+def test_all_expands_to_every_strategy_when_requested_then_options_list_them(monkeypatch):
+    from vexy_pdf3md import converter
+    from vexy_pdf3md.models import STRATEGIES
+
+    seen = {}
+    monkeypatch.setattr(converter, "plan", lambda *a, **k: seen.update(options=a[2]) or [])
+    monkeypatch.setattr(converter, "publish", lambda *a, **k: None)
+    converter.convert("x.pdf", strategies="all")
+    assert seen["options"].strategies == STRATEGIES, "all must expand to every strategy"
+
+
+@pytest.fixture
+def polish_scan(tmp_path):
+    """Scanned Polish sentence with every diacritic, rasterised from a Unicode font."""
+    import pymupdf
+
+    font = Path("/System/Library/Fonts/Supplemental/Arial Unicode.ttf")
+    if not font.exists():
+        pytest.skip("no Unicode font available to rasterise Polish text")
+    path = tmp_path / "polish.pdf"
+    with pymupdf.open() as original, pymupdf.open() as scanned:
+        page = original.new_page(width=500, height=200)
+        page.insert_font(fontname="uni", fontfile=str(font))
+        page.insert_text((40, 80), "Zażółć gęślą jaźń.", fontsize=20, fontname="uni")
+        raster = page.get_pixmap(dpi=200)
+        scanned.new_page(width=500, height=200).insert_image(page.rect, pixmap=raster)
+        scanned.save(path)
+    return path
+
+
+@pytest.mark.parametrize("engine", ["tesseract", "docling"])
+def test_real_polish_ocr_when_lang_hint_given_then_diacritics_survive(polish_scan, engine):
+    if not shutil.which("tesseract"):
+        pytest.skip("tesseract is not installed")
+    if engine == "docling":
+        pytest.importorskip("docling")
+    result = convert(polish_scan, strategies=engine, lang="pl", fallback=False, timeout=180)
+    assert result.ok, result.results[0].attempts
+    text = polish_scan.with_suffix(".md").read_text()
+    assert "Zażółć gęślą jaźń" in text, text
+
+
+def test_unreadable_when_layer_is_control_codes_then_page_needs_ocr(scan, tmp_path):
+    from vexy_pdf3md.inspection import unreadable
+
+    garbage = "\x04\x05\x06\x05 \x07\x08\t\n\x05\x0b\x0c 12.01.2021 \x0f\x10\x11" * 5
+    assert unreadable(garbage), "control-code layers carry no words"
+    assert not unreadable("Badanie Wynik Jedn. MIN MAX\n" * 5), "real text stays readable"
+    assert not unreadable("\x04\x05"), "a few stray codes never force OCR"
+    with pymupdf.open() as doc:
+        page = doc.new_page()
+        page.insert_text((40, 60), "cover page with plenty of readable text " * 3)
+        path = tmp_path / "hidden.pdf"
+        doc.save(path)
+    assert (
+        inspect(str(path), Options().__dict__ | {"pages": "", "password": ""})["needs_ocr"] is False
+    )
+
+
+def test_check_quality_when_output_is_control_codes_then_rejected():
+    garbage = "\x04\x05\x06\x05 \x07\x08\t\n\x05\x0b\x0c 12.01.2021 \x0f\x10\x11" * 5
+    with pytest.raises(ConversionError, match="unreadable control codes"):
+        check_quality(garbage, {"characters": 10}, Options())
+
+
+def test_docling_when_scan_profile_then_full_page_ocr(monkeypatch, tmp_path):
+    pytest.importorskip("docling")
+    from vexy_pdf3md import backends
+
+    seen = {}
+
+    class Stop(Exception):
+        pass
+
+    def spy(**kwargs):
+        seen.update(kwargs)
+        raise Stop
+
+    from docling.datamodel import pipeline_options
+
+    monkeypatch.setattr(pipeline_options, "TesseractCliOcrOptions", spy)
+    monkeypatch.setattr(backends, "tessdata_dir", lambda *a: tmp_path)
+    with pytest.raises(Stop):
+        backends.docling_markdown(tmp_path / "x.pdf", Options().__dict__, {"needs_ocr": True})
+    assert seen["mode"].name == "FULL_PAGE" and seen["lang"] == ["eng"]

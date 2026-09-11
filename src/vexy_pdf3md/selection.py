@@ -5,6 +5,7 @@ import importlib.util
 import re
 import shutil
 
+from .inspection import unreadable
 from .models import OCR_STRATEGIES, Options
 from .process import ConversionError
 
@@ -46,6 +47,8 @@ def check_quality(text: str, profile: dict, options: Options) -> None:
     chars = sum(c.isalnum() for c in plain)
     if not chars:
         raise ConversionError("converter returned no usable text")
+    if unreadable(plain):
+        raise ConversionError("text layer is unreadable control codes; an OCR strategy is needed")
     if plain.count("\ufffd") > max(3, len(plain) * 0.02):
         raise ConversionError("converter returned replacement-character corruption")
     if chars < profile["characters"] * options.min_text_ratio:

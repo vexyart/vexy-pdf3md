@@ -1,13 +1,18 @@
 # this_file: src/vexy_pdf3md/backends.py
 """Small adapters for existing converters; called only inside isolated workers."""
 
+import importlib
+import importlib.machinery
 import shutil
 import subprocess
+import sys
+import types
 from collections import Counter
 from pathlib import Path
 
 import pymupdf
 
+from .languages import parse, tessdata_dir, vision_codes
 from .process import ConversionError
 
 
@@ -33,7 +38,7 @@ def convert_backend(strategy: str, pdf: Path, folder: Path, options: dict, profi
             str(folder / "native.md"),
             "--quiet",
             "--languages",
-            options["vision_languages"],
+            vision_codes(options["lang"]),
             "--dpi",
             str(options["dpi"]),
         ]
@@ -44,7 +49,7 @@ def convert_backend(strategy: str, pdf: Path, folder: Path, options: dict, profi
     if strategy == "tesseract":
         return tesseract_markdown(pdf, folder, options)
     if strategy == "docling":
-        return docling_markdown(pdf, options)
+        return docling_markdown(pdf, options, profile)
     raise ValueError(f"unknown strategy {strategy}")
 
 
@@ -85,19 +90,33 @@ def native_markdown(pdf: Path) -> str:
 
 def tesseract_markdown(pdf: Path, folder: Path, options: dict) -> str:
     engine = executable("tesseract")
+    codes = parse(options["lang"])
+    tessdata = tessdata_dir(engine, codes)
     texts = []
     with pymupdf.open(pdf) as doc:
         for page in doc:
             raster = folder / "ocr.png"
             page.get_pixmap(dpi=options["dpi"], alpha=False).save(raster)
             texts.append(
-                external([engine, str(raster), "stdout", "-l", options["language"]], folder).strip()
+                external(
+                    [
+                        engine,
+                        str(raster),
+                        "stdout",
+                        "-l",
+                        "+".join(codes),
+                        "--tessdata-dir",
+                        str(tessdata),
+                    ],
+                    folder,
+                ).strip()
             )
             raster.unlink()
     return "\n\n---\n\n".join(texts)
 
 
-def docling_markdown(pdf: Path, options: dict) -> str:
+def docling_markdown(pdf: Path, options: dict, profile: dict | None = None) -> str:
+    _shield_torchaudio()
     try:
         from docling.datamodel.base_models import ConversionStatus, InputFormat
         from docling.datamodel.pipeline_options import (
@@ -108,15 +127,33 @@ def docling_markdown(pdf: Path, options: dict) -> str:
         from docling.document_converter import DocumentConverter, PdfFormatOption
     except ImportError as exc:
         raise ConversionError("docling is not installed; install vexy-pdf3md[docling]") from exc
+    codes = parse(options["lang"])
+    tesseract = shutil.which("tesseract")
+    full_page = options["ocr"] == "always" or bool(profile and profile.get("needs_ocr"))
     pipeline = PdfPipelineOptions(do_ocr=options["ocr"] != "never")
-    pipeline.ocr_options = TesseractCliOcrOptions(
-        lang=options["language"].split("+"),
-        mode=OcrMode.FULL_PAGE if options["ocr"] == "always" else OcrMode.DEFAULT,
-        scale=options["dpi"] / 72,
-    )
+    if tesseract:
+        pipeline.ocr_options = TesseractCliOcrOptions(
+            lang=codes,
+            path=str(tessdata_dir(tesseract, codes)),
+            # Docling only OCRs bitmap regions by default; an unreadable text layer would
+            # otherwise be copied verbatim, so scans get whole-page OCR.
+            mode=OcrMode.FULL_PAGE if full_page else OcrMode.DEFAULT,
+            scale=options["dpi"] / 72,
+        )
     result = DocumentConverter(
         format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline)}
     ).convert(pdf)
     if result.status != ConversionStatus.SUCCESS:
         raise ConversionError(f"docling conversion incomplete: {result.status}")
     return result.document.export_to_markdown()
+
+
+def _shield_torchaudio() -> None:
+    """transformers imports torchaudio whenever it is installed; docling never needs it,
+    so a native build mismatched with torch must not take layout analysis down."""
+    try:
+        importlib.import_module("torchaudio")
+    except (ImportError, OSError):
+        stub = types.ModuleType("torchaudio")
+        stub.__spec__ = importlib.machinery.ModuleSpec("torchaudio", None)
+        sys.modules["torchaudio"] = stub

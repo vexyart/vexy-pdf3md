@@ -11,9 +11,7 @@ from loguru import logger
 from .converter import convert
 
 
-@SetParseFn(
-    str, "input", "output", "strategies", "pages", "password", "language", "vision_languages", "ocr"
-)
+@SetParseFn(str, "input", "output", "strategies", "pages", "password", "lang", "ocr")
 def command(
     input: str,
     output: str | None = None,
@@ -25,8 +23,7 @@ def command(
     overwrite: bool = False,
     pages: str = "",
     password: str = "",
-    language: str = "eng",
-    vision_languages: str = "en",
+    lang: str = "eng",
     dpi: int = 150,
     ocr: str = "auto",
     min_text_ratio: float = 0.5,
@@ -37,8 +34,8 @@ def command(
     Args:
         input: PDF file or directory, traversed recursively (case-insensitive .pdf).
         output: Markdown file or output directory; defaults beside the input.
-        strategies: auto, or comma-separated markit,pymupdf,pdf22md,tesseract,docling.
-            Multiple strategies run independently and add .STRATEGY.md suffixes.
+        strategies: auto, all, or comma-separated markit,pymupdf,pdf22md,tesseract,docling.
+            Multiple strategies (or all) run independently and add .STRATEGY.md suffixes.
         media: True/images exports raster image placements; pages renders complete
             pages including vector graphics; False disables export.
         workers: Maximum simultaneous isolated jobs, from 1 to 64.
@@ -47,8 +44,8 @@ def command(
         overwrite: Replace existing Markdown and owned media (default False).
         pages: One-based inclusive selection, e.g. 1-3,5; empty means all pages.
         password: Password for encrypted PDFs, omitted from reports/logs.
-        language: Tesseract/Docling language codes, e.g. eng+pol.
-        vision_languages: pdf22md Vision languages, e.g. en,pl.
+        lang: Comma-separated OCR language hints as ISO 639-1 or Tesseract codes,
+            e.g. en,pl or eng,pol. Missing Tesseract models download on first use.
         dpi: OCR/media rendering resolution, 72 to 600.
         ocr: auto detects scans, always requires OCR, never uses text layers only.
         min_text_ratio: Minimum retained alphanumeric text-layer fraction (0-1).

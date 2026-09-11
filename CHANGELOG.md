@@ -5,6 +5,17 @@ this_file: CHANGELOG.md
 
 ## Unreleased
 
+- Detect text layers made of C0 control codes (subset fonts without ToUnicode, common in
+  Polish lab reports) as scanned pages, reject such output from text-layer strategies, and
+  run Docling in full-page OCR mode for them.
+- Accept `--strategies=all` as shorthand for every strategy run side by side.
+- Replace `--language`/`--vision-languages` with one `--lang` hint list (`pl,en` or
+  `pol+eng`) mapped onto Tesseract, Docling, and pdf22md Vision codes.
+- Download missing Tesseract models from tessdata_fast into `~/.cache/vexy-pdf3md/tessdata`
+  and mirror output configs there, so `--tessdata-dir` keeps Docling's TSV parsing intact.
+  Downloads and copies stage per-process files, so parallel workers never race.
+- Docling: require pydantic 2.12+ (older user-site copies crash pipeline hashing) and
+  stub a torchaudio build that fails to load, which transformers imports unconditionally.
 - Route a document to OCR only when at least 20% of selected pages look scanned;
   isolated image pages now log a warning instead of forcing whole-document OCR.
 - Never fall back to a sibling strategy of one multi-strategy run; warn whenever the

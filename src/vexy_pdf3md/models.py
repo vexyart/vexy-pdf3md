@@ -21,8 +21,7 @@ class Options:
     overwrite: bool = False
     pages: str = ""
     password: str = field(default="", repr=False)
-    language: str = "eng"
-    vision_languages: str = "en"
+    lang: str = "eng"
     dpi: int = 150
     ocr: str = "auto"
     min_text_ratio: float = 0.5
@@ -30,11 +29,8 @@ class Options:
     def __post_init__(self) -> None:
         if type(self.fallback) is not bool or type(self.overwrite) is not bool:
             raise ValueError("fallback and overwrite must be booleans")
-        if not all(
-            isinstance(value, str)
-            for value in (self.password, self.pages, self.language, self.vision_languages)
-        ):
-            raise ValueError("password, pages, and language options must be strings")
+        if not all(isinstance(value, str) for value in (self.password, self.pages, self.lang)):
+            raise ValueError("password, pages, and lang options must be strings")
         if not self.strategies or any(s not in (*STRATEGIES, "auto") for s in self.strategies):
             raise ValueError(f"strategies must be auto or a selection of {STRATEGIES}")
         if len(set(self.strategies)) != len(self.strategies) or (
@@ -55,8 +51,8 @@ class Options:
             "never",
         ):
             raise ValueError("invalid media or ocr mode")
-        if not self.language or not self.vision_languages:
-            raise ValueError("OCR language lists cannot be empty")
+        if not self.lang.replace("+", ",").replace(",", "").strip():
+            raise ValueError("lang must name at least one language, e.g. eng,pol or en,pl")
 
 
 @dataclass

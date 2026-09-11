@@ -2857,9 +2857,11 @@ dependencies = [
 [package.optional-dependencies]
 all = [
     { name = "docling" },
+    { name = "pydantic" },
 ]
 docling = [
     { name = "docling" },
+    { name = "pydantic" },
 ]
 
 [package.dev-dependencies]
@@ -2878,6 +2880,8 @@ requires-dist = [
     { name = "docling", marker = "extra == 'docling'", specifier = ">=2.126,<3" },
     { name = "fire", specifier = ">=0.7.1" },
     { name = "loguru", specifier = ">=0.7.3" },
+    { name = "pydantic", marker = "extra == 'all'", specifier = ">=2.12" },
+    { name = "pydantic", marker = "extra == 'docling'", specifier = ">=2.12" },
     { name = "pymupdf", specifier = ">=1.26" },
 ]
 provides-extras = ["all", "docling"]

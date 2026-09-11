@@ -224,3 +224,6 @@ __marimo__/
 /src/vexy_pdf3md/__version__.py
 .DS_Store
 _private
+
+# oh-my-claudecode runtime state
+.omc/

@@ -23,6 +23,7 @@ pdf3md = "vexy_pdf3md.cli:main"
 [project.optional-dependencies]
 docling = [
     "docling>=2.126,<3",
+    "pydantic>=2.12",
 ]
 all = [
     "vexy-pdf3md[docling]",

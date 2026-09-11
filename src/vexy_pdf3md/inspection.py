@@ -57,6 +57,7 @@ def inspect(source: str, options: dict) -> dict:
             )
             suspect = (chars < 40 and largest > 0.2) or (chars == 0 and bool(page.get_drawings()))
             suspect |= text.count("\ufffd") > max(3, len(text) * 0.05)
+            suspect |= unreadable(text)
             counts.append(chars)
             if suspect:
                 scanned.append(index + 1)
@@ -67,6 +68,16 @@ def inspect(source: str, options: dict) -> dict:
         "ocr_pages": scanned,
         "needs_ocr": bool(scanned) and len(scanned) >= OCR_PAGE_SHARE * len(pages),
     }
+
+
+def unreadable(text: str) -> bool:
+    """Subset fonts without ToUnicode yield C0 control codes instead of letters.
+
+    Such a layer passes character counts yet carries no words, so the page must be OCRed.
+    """
+    letters = sum(c.isalpha() for c in text)
+    controls = sum(ord(c) < 32 and c not in "\t\n\r\f" for c in text)
+    return controls > 20 and controls > letters
 
 
 def prepared_pdf(source: str, options: dict, folder: Path) -> Path:
