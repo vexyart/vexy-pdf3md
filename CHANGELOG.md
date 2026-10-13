@@ -5,6 +5,14 @@ this_file: CHANGELOG.md
 
 ## Unreleased
 
+- Add documentation site: `src_docs/md/` (11 pages) built with ProperDocs + MaterialX by
+  `src_docs/build.sh` into `docs/`, served at https://vexy.dev/vexy-pdf3md/; `Docs` workflow
+  rebuilds it on push to `main`.
+- Add `build.sh` (`all|docs|package`). Replace `publish.sh` with the shared gitnextver +
+  `./build.sh package` + `uv publish` flow; adapt `tests/test_release.py` to it.
+- Add project URLs and classifiers; anchor sdist includes to the repository root.
+- Stop tracking `.omc/` session state; ignore `node_modules/` and `site/`.
+
 - Detect text layers made of C0 control codes (subset fonts without ToUnicode, common in
   Polish lab reports) as scanned pages, reject such output from text-layer strategies, and
   run Docling in full-page OCR mode for them.

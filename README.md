@@ -3,6 +3,8 @@ this_file: README.md
 ---
 # vexy-pdf3md
 
+**Documentation:** https://vexy.dev/vexy-pdf3md/
+
 Convert one PDF or an entire folder tree to Markdown. Choose a converter, let the
 package select one, or run several strategies side by side. Failed conversions try
 another eligible tool; results record every attempt and the actual winner.
@@ -188,32 +190,25 @@ No cloud OCR or AI service is invoked by this package.
 uv run --extra docling pytest -m optional    # real Docling + model integration
 uvx hatch test                              # isolated package test environment
 uv build                                    # Git-derived version, wheel and sdist
+./build.sh docs                             # documentation site into docs/
 ```
 
 ## Publish
 
 ```bash
-./publish.sh                         # commit changes, tag, push, build, uv publish
-PUBLISH_SKIP_UPLOAD=1 ./publish.sh    # same Git release, skip only the PyPI upload
+./build.sh package    # clean dist/, uv build, twine check
+./publish.sh          # gitnextver commit + tag + push, then build and uv publish
 ```
 
 `hatch-vcs` derives versions from Git tags and generates the gitignored
 `src/vexy_pdf3md/__version__.py` during builds/installs. Rebuild or reinstall after
 changing tags to refresh editable-install versions; never commit the generated file.
 
-`publish.sh` validates before and after `uvx gitnextver`, which stages and commits
-**all nonignored changes**, creates the next `vX.Y.Z` tag, and pushes configured remotes.
-Generated version files are cleaned; source changes are committed, not discarded.
-The script checks the clean tree, exact tag, and remote push, then builds fresh artifacts
-and compares wheel/sdist/generated versions to the tag before calling `uv publish`.
-Only the newly built wheel and sdist are uploaded; copies remain in `dist/`.
-
-Configure uv publishing credentials, e.g. `UV_PUBLISH_TOKEN`, through your environment.
-Arguments to `publish.sh` are forwarded to `uv publish`. A clean tagged checkout can
-retry a failed upload. A clean **untagged** checkout is rejected because gitnextver
-requires changes to create a tag. Validation installs all extras but does not run the
-optional model-download integration by default. A failed push, test, build, or version
-check stops the upload.
+`publish.sh` runs `uvx gitnextver`, which stages and commits **all nonignored changes**,
+creates the next `vX.Y.Z` tag, and pushes. It stops if `HEAD` carries no such tag
+(gitnextver only tags when there are changes to commit). It then runs
+`./build.sh package` and uploads `dist/*` with `uv publish`. Configure uv publishing
+credentials, e.g. `UV_PUBLISH_TOKEN`, through your environment. Run `./test.sh` first.
 
 See [ANALYSIS.md](ANALYSIS.md) for both source-project investigations and routing
 tradeoffs, [DEPENDENCIES.md](DEPENDENCIES.md) for dependency roles/licenses, and

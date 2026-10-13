@@ -227,3 +227,7 @@ _private
 
 # oh-my-claudecode runtime state
 .omc/
+
+# Added for docs/packaging hygiene
+node_modules/
+site/
