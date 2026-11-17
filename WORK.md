@@ -137,3 +137,9 @@ source files in full as well as tracked changes. Cleanup was limited to the new
 package. Remaining converter/scan heuristics, basic fallback formatting, rendered
 media semantics, Windows child-process limits, and overlapping-invocation limits
 are documented in ANALYSIS.md and README.md.
+
+## 2026-10-18: documentation plugins
+
+- Use MaterialX search, inherited metadata and a topic index; keep ordered navigation in awesome-nav.
+- The documentation wrapper installs the plugins required by this site.
+- Strict documentation build and rendered output checks passed.

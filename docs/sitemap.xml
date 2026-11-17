@@ -2,57 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/api/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/architecture/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/changelog/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/cli/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/contributing/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/installation/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/output/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/quickstart/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/strategies/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://vexy.dev/vexy-pdf3md/topics/</loc>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
     <url>
         <loc>https://vexy.dev/vexy-pdf3md/troubleshooting/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-11-17</lastmod>
         <changefreq>daily</changefreq>
     </url>
 </urlset>
