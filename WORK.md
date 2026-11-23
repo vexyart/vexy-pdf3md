@@ -3,6 +3,21 @@ this_file: WORK.md
 ---
 # Work log
 
+## 2026-11-24 — documentation theme
+
+- `./build.sh docs` and the Docs workflow both use `src_docs/build.sh` and
+  `src_docs/mkdocs.yml`. The strict build with fly-january 0.1.1 exited 0 with
+  no warnings. All 13 generated HTML pages use the native header and footer,
+  neutral labels and the MaterialX favicon. The five Fly assets match the
+  installed wheel. All 842 local link and asset references resolve. Search and
+  tags cover all 12 documentation pages.
+- `./test.sh` passed Ruff and ty. Pytest reported 68 passed, 5 failed, 1 skipped
+  and 1 deselected, with 92.94% coverage. All five failures reproduced against
+  the original commit `dcd74fa`. Four release tests mock the previous local
+  publishing flow. The installed `pdf22md` exited with signal 5 after resuming
+  a Swift continuation twice during its scan test. `uv run examples/smoke.py`
+  passed separately.
+
 ## Multilingual OCR and Docling repair (2026-09-11)
 
 - Reproduced on a rasterised Polish pangram: Tesseract with the `eng` model garbled every

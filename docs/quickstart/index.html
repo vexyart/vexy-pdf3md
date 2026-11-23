@@ -34,16 +34,21 @@
     
     
       
-        <title>Quick start - vexy-pdf3md</title>
+        <title>Quick start - pdf3md</title>
       
     
     
+  
       <link rel="stylesheet" href="../assets/stylesheets/main.314bbef5.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.a45159b5.min.css">
       
     
+  <link rel="stylesheet" data-fly-photoswipe href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css"
+      integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/fly/fly.css?v=24c03d88bb">
+
     
 
     
@@ -67,6 +72,19 @@
 
     
     
+  
+  <script>try{if(sessionStorage.getItem("fly-l2")==="in"){document.documentElement.dataset.flyL2="in";sessionStorage.removeItem("fly-l2")}}catch(e){}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0&icon_names=arrow_back,arrow_forward,dark_mode,light_mode&display=block">
+  <script>try{document.fonts.load('20px "Material Symbols Outlined"',"arrow_backarrow_forwarddark_modelight_mode").then(function(f){if(f.length)document.documentElement.classList.add("fly-msym")})}catch(e){}</script>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/cmv5add.css" data-fly-font>
+  <link rel="stylesheet" href="https://use.typekit.net/cna4jfp.css" data-fly-font>
+  <link rel="stylesheet" href="https://use.typekit.net/wck5koo.css" data-fly-font>
+
   </head>
   
   
@@ -79,7 +97,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass" class="fly-margin-left fly-chrome-none" data-fly-hue="indigo" data-fly-links="accent">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -100,13 +118,14 @@
     </div>
     
     
+  
       
 
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="vexy-pdf3md" class="md-header__button md-logo" aria-label="vexy-pdf3md" data-md-component="logo">
+    <a href=".." title="pdf3md" class="md-header__button md-logo" aria-label="pdf3md" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +139,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            vexy-pdf3md
+            pdf3md
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -212,7 +231,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    vexyart/vexy-pdf3md
+    GitHub
   </div>
 </a>
       </div>
@@ -221,6 +240,7 @@
   
 </header>
     
+
     <div class="md-container" data-md-component="container">
       
       
@@ -242,13 +262,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="vexy-pdf3md" class="md-nav__button md-logo" aria-label="vexy-pdf3md" data-md-component="logo">
+    <a href=".." title="pdf3md" class="md-nav__button md-logo" aria-label="pdf3md" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    vexy-pdf3md
+    pdf3md
   </label>
   
     <div class="md-nav__source">
@@ -258,7 +278,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    vexyart/vexy-pdf3md
+    GitHub
   </div>
 </a>
     </div>
@@ -271,12 +291,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Home">
     
   
     Home
@@ -298,12 +319,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../installation/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Installation">
     
   
     Installation
@@ -323,13 +345,13 @@
       
   
   
+  
     
   
   
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -339,7 +361,7 @@
           
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Quick start">
     
   
     Quick start
@@ -357,7 +379,7 @@
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Quick start">
     
   
     Quick start
@@ -376,12 +398,14 @@
   
   
   
+  
+    
     
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Quick start
     </label>
     <ul class="md-nav__list" data-md-component="toc">
       
@@ -487,12 +511,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../cli/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Command line">
     
   
     Command line
@@ -514,12 +539,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../strategies/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Strategies and fallback">
     
   
     Strategies and fallback
@@ -541,12 +567,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../output/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Output layout and media">
     
   
     Output layout and media
@@ -568,12 +595,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../api/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Python API">
     
   
     Python API
@@ -595,12 +623,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Architecture">
     
   
     Architecture
@@ -622,12 +651,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Troubleshooting">
     
   
     Troubleshooting
@@ -649,12 +679,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../contributing/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Development and release">
     
   
     Development and release
@@ -676,12 +707,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../changelog/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Changelog">
     
   
     Changelog
@@ -703,12 +735,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../topics/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Topics">
     
   
     Topics
@@ -741,12 +774,14 @@
   
   
   
+  
+    
     
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Quick start
     </label>
     <ul class="md-nav__list" data-md-component="toc">
       
@@ -856,10 +891,10 @@
   
 
 
-<h1 id="quick-start">Quick start<a class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
+<h1 id="quick-start">Quick start<a aria-label="Permanent link" class="headerlink" href="#quick-start" title="Permanent link">&para;</a></h1>
 <p>This page walks through the common tasks. The examples assume <code>vexy-pdf3md</code> is on
 your <code>PATH</code>. From a checkout, prefix each command with <code>uv run</code>.</p>
-<h2 id="convert-one-pdf">Convert one PDF<a class="headerlink" href="#convert-one-pdf" title="Permanent link">&para;</a></h2>
+<h2 id="convert-one-pdf">Convert one PDF<a aria-label="Permanent link" class="headerlink" href="#convert-one-pdf" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Run the tool on the file:</p>
@@ -874,12 +909,12 @@ your <code>PATH</code>. From a checkout, prefix each command with <code>uv run</
 <p>Result: <code>book.md</code> is written beside <code>book.pdf</code>.</p>
 <p>If <code>book.md</code> already exists, the file is skipped and reported with
 <code>"status": "skipped"</code>. Add <code>--overwrite=True</code> to replace it.</p>
-<h2 id="choose-the-output-file">Choose the output file<a class="headerlink" href="#choose-the-output-file" title="Permanent link">&para;</a></h2>
+<h2 id="choose-the-output-file">Choose the output file<a aria-label="Permanent link" class="headerlink" href="#choose-the-output-file" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>vexy-pdf3md<span class="w"> </span>book.pdf<span class="w"> </span>--output<span class="w"> </span>results/renamed.md
 </code></pre></div>
 <p>Result: <code>results/renamed.md</code>. For a single input file, <code>--output</code> may also be an
 existing folder; the file is then written as <code>FOLDER/book.md</code>.</p>
-<h2 id="convert-a-folder-tree">Convert a folder tree<a class="headerlink" href="#convert-a-folder-tree" title="Permanent link">&para;</a></h2>
+<h2 id="convert-a-folder-tree">Convert a folder tree<a aria-label="Permanent link" class="headerlink" href="#convert-a-folder-tree" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vexy-pdf3md<span class="w"> </span>./pdfs<span class="w"> </span>--output<span class="w"> </span>./markdown<span class="w"> </span>--workers<span class="o">=</span><span class="m">4</span>
 </code></pre></div>
 <p>The tool finds every file ending in <code>.pdf</code> (any letter case) under <code>./pdfs</code>, and
@@ -888,7 +923,7 @@ writes each Markdown file to the same relative path under <code>./markdown</code
 </code></pre></div>
 <p>Up to four PDFs are converted at the same time. Omit <code>--output</code> to write each
 Markdown file next to its PDF.</p>
-<h2 id="export-images">Export images<a class="headerlink" href="#export-images" title="Permanent link">&para;</a></h2>
+<h2 id="export-images">Export images<a aria-label="Permanent link" class="headerlink" href="#export-images" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>vexy-pdf3md<span class="w"> </span>book.pdf<span class="w"> </span>--media
 </code></pre></div>
 <p>Result:</p>
@@ -899,20 +934,20 @@ Markdown file next to its PDF.</p>
 <p><code>book.md</code> ends with a <code>## Media</code> section that links each PNG. Use <code>--media=pages</code> to
 render whole pages, including vector artwork, instead of only raster images. See
 <a href="../output/">Output layout and media</a>.</p>
-<h2 id="compare-converters">Compare converters<a class="headerlink" href="#compare-converters" title="Permanent link">&para;</a></h2>
+<h2 id="compare-converters">Compare converters<a aria-label="Permanent link" class="headerlink" href="#compare-converters" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>vexy-pdf3md<span class="w"> </span>book.pdf<span class="w"> </span>--strategies<span class="o">=</span>markit,pymupdf
 </code></pre></div>
 <p>Result: <code>book.markit.md</code> and <code>book.pymupdf.md</code>, one per strategy. Use
 <code>--strategies=all</code> to run all five. Add <code>--fallback=False</code> when you want each file
 to come only from the named converter.</p>
-<h2 id="convert-a-scan">Convert a scan<a class="headerlink" href="#convert-a-scan" title="Permanent link">&para;</a></h2>
+<h2 id="convert-a-scan">Convert a scan<a aria-label="Permanent link" class="headerlink" href="#convert-a-scan" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>vexy-pdf3md<span class="w"> </span>scan.pdf<span class="w"> </span>--strategies<span class="o">=</span>tesseract<span class="w"> </span>--pages<span class="o">=</span><span class="m">1</span>-3,5<span class="w"> </span>--lang<span class="o">=</span>pl,en<span class="w"> </span>--dpi<span class="o">=</span><span class="m">200</span>
 </code></pre></div>
 <p>This OCRs pages 1, 2, 3 and 5 with Tesseract, using Polish and English models, at
 200 dpi. In automatic mode you usually do not need <code>--strategies</code>: a PDF whose pages
 look scanned is routed to an OCR converter. See
 <a href="../strategies/">Strategies and fallback</a>.</p>
-<h2 id="use-the-python-api">Use the Python API<a class="headerlink" href="#use-the-python-api" title="Permanent link">&para;</a></h2>
+<h2 id="use-the-python-api">Use the Python API<a aria-label="Permanent link" class="headerlink" href="#use-the-python-api" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">vexy_pdf3md</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">batch</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="s2">"pdfs"</span><span class="p">,</span> <span class="s2">"markdown"</span><span class="p">,</span> <span class="n">strategies</span><span class="o">=</span><span class="s2">"auto"</span><span class="p">,</span> <span class="n">media</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
@@ -921,7 +956,7 @@ look scanned is routed to an OCR converter. See
 <a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">input</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">status</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">strategy</span><span class="p">)</span>
 </code></pre></div>
 <p>See <a href="../api/">Python API</a>.</p>
-<h2 id="run-the-bundled-example">Run the bundled example<a class="headerlink" href="#run-the-bundled-example" title="Permanent link">&para;</a></h2>
+<h2 id="run-the-bundled-example">Run the bundled example<a aria-label="Permanent link" class="headerlink" href="#run-the-bundled-example" title="Permanent link">&para;</a></h2>
 <p>From a checkout:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uv<span class="w"> </span>run<span class="w"> </span>examples/smoke.py
 </code></pre></div>
@@ -985,41 +1020,28 @@ image were written. It prints:</p>
 </div>
       </main>
       
+  
         <footer class="md-footer">
   
     
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
-          
           <a href="../installation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Installation">
-            <div class="md-footer__button md-icon">
-              
+            <div class="md-footer__button md-icon fly-arrow fly-arrow--back" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Installation
-              </div>
+              <div class="md-ellipsis">Installation</div>
             </div>
           </a>
         
         
-          
           <a href="../cli/" class="md-footer__link md-footer__link--next" aria-label="Next: Command line">
             <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Command line
-              </div>
+              <div class="md-ellipsis">Command line</div>
             </div>
-            <div class="md-footer__button md-icon">
-              
+            <div class="md-footer__button md-icon fly-arrow fly-arrow--forward" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
             </div>
           </a>
@@ -1027,22 +1049,10 @@ image were written. It prints:</p>
       </nav>
     
   
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
   
-  
-    Made with
-    <a href="https://jaywhj.github.io/mkdocs-materialx/" target="_blank" rel="noopener">
-      MaterialX
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
 </footer>
       
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -1055,8 +1065,12 @@ image were written. It prints:</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "code": null, "features": ["navigation.sections", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.fc193f93.min.js"></script>
       
     
+  <script src="../assets/fly/fly-bridge.js?v=86c9984233"></script>
+  <script type="module" src="../assets/fly/fly.js?v=f51ac22526"></script>
+
   </body>
 </html>

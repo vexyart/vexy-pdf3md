@@ -34,16 +34,21 @@
     
     
       
-        <title>Strategies and fallback - vexy-pdf3md</title>
+        <title>Strategies and fallback - pdf3md</title>
       
     
     
+  
       <link rel="stylesheet" href="../assets/stylesheets/main.314bbef5.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.a45159b5.min.css">
       
     
+  <link rel="stylesheet" data-fly-photoswipe href="https://cdn.jsdelivr.net/npm/photoswipe@5.4.4/dist/photoswipe.css"
+      integrity="sha384-IfxC36XL/toUyJ939C73PcgMuRzAZuIzZxE38drsmO5p6jD7ei+Zx/1oA/0l8ysE" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/fly/fly.css?v=24c03d88bb">
+
     
 
     
@@ -67,6 +72,19 @@
 
     
     
+  
+  <script>try{if(sessionStorage.getItem("fly-l2")==="in"){document.documentElement.dataset.flyL2="in";sessionStorage.removeItem("fly-l2")}}catch(e){}</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0&icon_names=arrow_back,arrow_forward,dark_mode,light_mode&display=block">
+  <script>try{document.fonts.load('20px "Material Symbols Outlined"',"arrow_backarrow_forwarddark_modelight_mode").then(function(f){if(f.length)document.documentElement.classList.add("fly-msym")})}catch(e){}</script>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link rel="preconnect" href="https://p.typekit.net" crossorigin>
+  <link rel="stylesheet" href="https://use.typekit.net/cmv5add.css" data-fly-font>
+  <link rel="stylesheet" href="https://use.typekit.net/cna4jfp.css" data-fly-font>
+  <link rel="stylesheet" href="https://use.typekit.net/wck5koo.css" data-fly-font>
+
   </head>
   
   
@@ -79,7 +97,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" data-mx-topbar="glass" class="fly-margin-left fly-chrome-none" data-fly-hue="indigo" data-fly-links="accent">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -100,13 +118,14 @@
     </div>
     
     
+  
       
 
   
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="vexy-pdf3md" class="md-header__button md-logo" aria-label="vexy-pdf3md" data-md-component="logo">
+    <a href=".." title="pdf3md" class="md-header__button md-logo" aria-label="pdf3md" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -120,7 +139,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            vexy-pdf3md
+            pdf3md
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -212,7 +231,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    vexyart/vexy-pdf3md
+    GitHub
   </div>
 </a>
       </div>
@@ -221,6 +240,7 @@
   
 </header>
     
+
     <div class="md-container" data-md-component="container">
       
       
@@ -242,13 +262,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="vexy-pdf3md" class="md-nav__button md-logo" aria-label="vexy-pdf3md" data-md-component="logo">
+    <a href=".." title="pdf3md" class="md-nav__button md-logo" aria-label="pdf3md" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    vexy-pdf3md
+    pdf3md
   </label>
   
     <div class="md-nav__source">
@@ -258,7 +278,7 @@
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
-    vexyart/vexy-pdf3md
+    GitHub
   </div>
 </a>
     </div>
@@ -271,12 +291,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Home">
     
   
     Home
@@ -298,12 +319,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../installation/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Installation">
     
   
     Installation
@@ -325,12 +347,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../quickstart/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Quick start">
     
   
     Quick start
@@ -352,12 +375,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../cli/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Command line">
     
   
     Command line
@@ -377,13 +401,13 @@
       
   
   
+  
     
   
   
   
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
@@ -393,7 +417,7 @@
           
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Strategies and fallback">
     
   
     Strategies and fallback
@@ -411,7 +435,7 @@
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Strategies and fallback">
     
   
     Strategies and fallback
@@ -430,12 +454,14 @@
   
   
   
+  
+    
     
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Strategies and fallback
     </label>
     <ul class="md-nav__list" data-md-component="toc">
       
@@ -630,12 +656,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../output/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Output layout and media">
     
   
     Output layout and media
@@ -657,12 +684,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../api/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Python API">
     
   
     Python API
@@ -684,12 +712,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../architecture/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Architecture">
     
   
     Architecture
@@ -711,12 +740,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../troubleshooting/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Troubleshooting">
     
   
     Troubleshooting
@@ -738,12 +768,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../contributing/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Development and release">
     
   
     Development and release
@@ -765,12 +796,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../changelog/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Changelog">
     
   
     Changelog
@@ -792,12 +824,13 @@
   
   
   
+  
     <li class="md-nav__item">
       <a href="../topics/" class="md-nav__link">
         
   
   
-  <span class="md-ellipsis">
+  <span class="md-ellipsis" title="Topics">
     
   
     Topics
@@ -830,12 +863,14 @@
   
   
   
+  
+    
     
   
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      Table of contents
+      Strategies and fallback
     </label>
     <ul class="md-nav__list" data-md-component="toc">
       
@@ -1034,10 +1069,10 @@
   
 
 
-<h1 id="strategies-and-fallback">Strategies and fallback<a class="headerlink" href="#strategies-and-fallback" title="Permanent link">&para;</a></h1>
+<h1 id="strategies-and-fallback">Strategies and fallback<a aria-label="Permanent link" class="headerlink" href="#strategies-and-fallback" title="Permanent link">&para;</a></h1>
 <p>This page explains how <code>vexy-pdf3md</code> picks a converter, when it rejects a result,
 and what happens next.</p>
-<h2 id="step-1-inspect-the-pdf">Step 1: inspect the PDF<a class="headerlink" href="#step-1-inspect-the-pdf" title="Permanent link">&para;</a></h2>
+<h2 id="step-1-inspect-the-pdf">Step 1: inspect the PDF<a aria-label="Permanent link" class="headerlink" href="#step-1-inspect-the-pdf" title="Permanent link">&para;</a></h2>
 <p>Before any conversion, a worker process opens the PDF with PyMuPDF and checks every
 selected page. A page is marked as <em>looks scanned</em> when any of these is true:</p>
 <ul>
@@ -1052,7 +1087,7 @@ selected page. A page is marked as <em>looks scanned</em> when any of these is t
 <p>The document <em>needs OCR</em> only when at least 20% of the selected pages look scanned.
 If some pages look scanned but fewer than 20%, the tool logs a warning naming those
 pages and uses the text layer. Pass <code>--ocr=always</code> to OCR such a document anyway.</p>
-<h2 id="step-2-rank-the-candidates">Step 2: rank the candidates<a class="headerlink" href="#step-2-rank-the-candidates" title="Permanent link">&para;</a></h2>
+<h2 id="step-2-rank-the-candidates">Step 2: rank the candidates<a aria-label="Permanent link" class="headerlink" href="#step-2-rank-the-candidates" title="Permanent link">&para;</a></h2>
 <p>The candidate order depends on whether the document needs OCR:</p>
 <table>
 <thead>
@@ -1073,25 +1108,25 @@ pages and uses the text layer. Pass <code>--ocr=always</code> to OCR such a docu
 </tbody>
 </table>
 <p>With <code>--ocr=never</code>, <code>tesseract</code> is removed from the list.</p>
-<h3 id="-strategiesauto"><code>--strategies=auto</code><a class="headerlink" href="#-strategiesauto" title="Permanent link">&para;</a></h3>
+<h3 id="-strategiesauto"><code>--strategies=auto</code><a aria-label="Permanent link" class="headerlink" href="#-strategiesauto" title="Permanent link">&para;</a></h3>
 <p>Only installed converters are kept, in the order above. <code>pymupdf</code> is always
 installed. If a scanned document has no installed OCR converter, the document fails
 with:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>scanned PDF needs an OCR tool: install pdf22md, Tesseract, or vexy-pdf3md[docling]
 </code></pre></div>
-<h3 id="a-named-strategy">A named strategy<a class="headerlink" href="#a-named-strategy" title="Permanent link">&para;</a></h3>
+<h3 id="a-named-strategy">A named strategy<a aria-label="Permanent link" class="headerlink" href="#a-named-strategy" title="Permanent link">&para;</a></h3>
 <p>The named converter is tried first, even if it is not installed (the attempt then
 fails with <code>markit is not installed or not on PATH</code>, or similar). The installed
 converters from the ranked list follow as fallbacks.</p>
-<h3 id="several-named-strategies">Several named strategies<a class="headerlink" href="#several-named-strategies" title="Permanent link">&para;</a></h3>
+<h3 id="several-named-strategies">Several named strategies<a aria-label="Permanent link" class="headerlink" href="#several-named-strategies" title="Permanent link">&para;</a></h3>
 <p>Each named converter gets its own job and its own output file. A failed job never
 falls back to one of its siblings, because that sibling already writes its own file
 and the fallback would only produce a duplicate under a misleading suffix. Fallback
 goes to converters you did not name.</p>
-<h3 id="-fallbackfalse"><code>--fallback=False</code><a class="headerlink" href="#-fallbackfalse" title="Permanent link">&para;</a></h3>
+<h3 id="-fallbackfalse"><code>--fallback=False</code><a aria-label="Permanent link" class="headerlink" href="#-fallbackfalse" title="Permanent link">&para;</a></h3>
 <p>Only the first candidate is tried. Use this for strict comparisons between
 converters.</p>
-<h2 id="step-3-convert-and-check-the-result">Step 3: convert and check the result<a class="headerlink" href="#step-3-convert-and-check-the-result" title="Permanent link">&para;</a></h2>
+<h2 id="step-3-convert-and-check-the-result">Step 3: convert and check the result<a aria-label="Permanent link" class="headerlink" href="#step-3-convert-and-check-the-result" title="Permanent link">&para;</a></h2>
 <p>Each attempt runs in a separate worker process. An attempt fails when:</p>
 <ul>
 <li>the worker crashes, exits with a nonzero status, or exceeds <code>--timeout</code>;</li>
@@ -1113,32 +1148,32 @@ tried. When every candidate fails, the result has <code>"status": "failed"</code
 <p>If the converter that succeeded is not the one you named, a warning is printed:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>book.pdf: markit failed; pymupdf wrote /path/to/book.markit.md
 </code></pre></div>
-<h2 id="what-each-converter-does">What each converter does<a class="headerlink" href="#what-each-converter-does" title="Permanent link">&para;</a></h2>
-<h3 id="markit">markit<a class="headerlink" href="#markit" title="Permanent link">&para;</a></h3>
+<h2 id="what-each-converter-does">What each converter does<a aria-label="Permanent link" class="headerlink" href="#what-each-converter-does" title="Permanent link">&para;</a></h2>
+<h3 id="markit">markit<a aria-label="Permanent link" class="headerlink" href="#markit" title="Permanent link">&para;</a></h3>
 <p>Runs <code>markit -q --no-images FILE.pdf</code> and reads stdout.</p>
-<h3 id="pymupdf">pymupdf<a class="headerlink" href="#pymupdf" title="Permanent link">&para;</a></h3>
+<h3 id="pymupdf">pymupdf<a aria-label="Permanent link" class="headerlink" href="#pymupdf" title="Permanent link">&para;</a></h3>
 <p>Built in. Extracts text blocks page by page. The most common font size (weighted by
 characters) is treated as body text. Up to six larger sizes (more than 15% above body
 size) become heading levels <code>#</code> to <code>######</code>. Pages are separated by <code>---</code>. It does not
 reconstruct tables.</p>
-<h3 id="pdf22md">pdf22md<a class="headerlink" href="#pdf22md" title="Permanent link">&para;</a></h3>
+<h3 id="pdf22md">pdf22md<a aria-label="Permanent link" class="headerlink" href="#pdf22md" title="Permanent link">&para;</a></h3>
 <p>Runs <code>pdf22md --input FILE --output native.md --quiet --languages CODES --dpi DPI</code>.
 <code>--fast</code> is added when OCR is not needed or <code>--ocr=never</code> is set.</p>
-<h3 id="tesseract">tesseract<a class="headerlink" href="#tesseract" title="Permanent link">&para;</a></h3>
+<h3 id="tesseract">tesseract<a aria-label="Permanent link" class="headerlink" href="#tesseract" title="Permanent link">&para;</a></h3>
 <p>Renders each page to PNG at <code>--dpi</code> and runs
 <code>tesseract PAGE.png stdout -l CODES --tessdata-dir DIR</code> on it. Pages are separated by
 <code>---</code>. Missing language models are downloaded on first use (see
 <a href="../installation/#tesseract">Installation</a>).</p>
-<h3 id="docling">docling<a class="headerlink" href="#docling" title="Permanent link">&para;</a></h3>
+<h3 id="docling">docling<a aria-label="Permanent link" class="headerlink" href="#docling" title="Permanent link">&para;</a></h3>
 <p>Runs Docling's <code>DocumentConverter</code> with OCR enabled unless <code>--ocr=never</code>. When
 <code>tesseract</code> is on <code>PATH</code>, Docling uses Tesseract with the <code>--lang</code> codes, at a scale
 of <code>--dpi</code> / 72. For documents that need OCR, or with <code>--ocr=always</code>, it OCRs whole
 pages; otherwise only bitmap regions.</p>
-<h2 id="limits">Limits<a class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
+<h2 id="limits">Limits<a aria-label="Permanent link" class="headerlink" href="#limits" title="Permanent link">&para;</a></h2>
 <p>Scan detection and length checks are heuristics. They cannot prove that OCR is
 complete or correct. Exporting page images does not count as a successful
 conversion: an image-only document still needs usable OCR text.</p>
-<h2 id="measured-comparison">Measured comparison<a class="headerlink" href="#measured-comparison" title="Permanent link">&para;</a></h2>
+<h2 id="measured-comparison">Measured comparison<a aria-label="Permanent link" class="headerlink" href="#measured-comparison" title="Permanent link">&para;</a></h2>
 <p>The project measured all five strategies on 123 Microsoft localization style guides:
 text-layer PDFs of 30 to 100 pages, 59 of them in non-Latin scripts. Only English OCR
 models were installed, so the OCR ratings describe text-layer input, not scans.</p>
@@ -1231,41 +1266,28 @@ single screenshot page; the 20% page-share threshold now prevents that.</p>
 </div>
       </main>
       
+  
         <footer class="md-footer">
   
     
       
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
-          
           <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Command line">
-            <div class="md-footer__button md-icon">
-              
+            <div class="md-footer__button md-icon fly-arrow fly-arrow--back" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
             </div>
             <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                Command line
-              </div>
+              <div class="md-ellipsis">Command line</div>
             </div>
           </a>
         
         
-          
           <a href="../output/" class="md-footer__link md-footer__link--next" aria-label="Next: Output layout and media">
             <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              <div class="md-ellipsis">
-                Output layout and media
-              </div>
+              <div class="md-ellipsis">Output layout and media</div>
             </div>
-            <div class="md-footer__button md-icon">
-              
+            <div class="md-footer__button md-icon fly-arrow fly-arrow--forward" aria-hidden="true">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
             </div>
           </a>
@@ -1273,22 +1295,10 @@ single screenshot page; the 20% page-share threshold now prevents that.</p>
       </nav>
     
   
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
   
-  
-    Made with
-    <a href="https://jaywhj.github.io/mkdocs-materialx/" target="_blank" rel="noopener">
-      MaterialX
-    </a>
-  
-</div>
-      
-    </div>
-  </div>
 </footer>
       
+
     </div>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
@@ -1301,8 +1311,12 @@ single screenshot page; the 20% page-share threshold now prevents that.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "code": null, "features": ["navigation.sections", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
+  
       <script src="../assets/javascripts/bundle.fc193f93.min.js"></script>
       
     
+  <script src="../assets/fly/fly-bridge.js?v=86c9984233"></script>
+  <script type="module" src="../assets/fly/fly.js?v=f51ac22526"></script>
+
   </body>
 </html>

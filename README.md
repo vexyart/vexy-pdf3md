@@ -190,8 +190,11 @@ No cloud OCR or AI service is invoked by this package.
 uv run --extra docling pytest -m optional    # real Docling + model integration
 uvx hatch test                              # isolated package test environment
 uv build                                    # Git-derived version, wheel and sdist
-./build.sh docs                             # documentation site into docs/
+./build.sh docs                             # strict documentation build into docs/
 ```
+
+The docs build uses Python 3.13 and the fly-january 0.1.1 theme with
+`extra.fly.chrome` set to `none` in `src_docs/mkdocs.yml`.
 
 ## Publish
 

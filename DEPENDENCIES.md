@@ -14,6 +14,7 @@ this_file: DEPENDENCIES.md
 | pdf22md (external, optional, macOS) | PDFKit extraction and Vision OCR |
 | Tesseract (external, optional) | Local OCR; also used by the Docling adapter |
 | hatchling / hatch-vcs | Wheel/sdist builds, versions derived from Git tags |
+| fly-january 0.1.1 (via uvx) | Theme and plugin for the ProperDocs site |
 | gitnextver (via uvx) | Commit source changes, create the next release tag, push Git |
 | pytest / pytest-cov | Regression/integration tests and subprocess coverage |
 | ruff / ty | Formatting, lint, and type checks |

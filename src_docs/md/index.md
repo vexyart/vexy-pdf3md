@@ -1,4 +1,4 @@
-# vexy-pdf3md
+# vexy-pdf3md {data-toc-label="pdf3md"}
 
 `vexy-pdf3md` converts one PDF, or every PDF in a folder tree, to Markdown. It runs
 locally and calls no cloud OCR or AI service.
