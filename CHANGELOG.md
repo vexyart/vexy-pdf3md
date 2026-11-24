@@ -5,7 +5,7 @@ this_file: CHANGELOG.md
 
 ## Unreleased
 
-- Site now uses the fly-january 0.1.1 theme (chrome: none).
+- Site now uses the fly-january 0.2.1 theme (chrome: none).
 - Add documentation site: `src_docs/md/` (11 pages) built with ProperDocs + MaterialX by
   `src_docs/build.sh` into `docs/`, served at https://vexy.dev/vexy-pdf3md/; `Docs` workflow
   rebuilds it on push to `main`.

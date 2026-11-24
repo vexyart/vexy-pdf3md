@@ -3,6 +3,8 @@ this_file: WORK.md
 ---
 # Work log
 
+The docs build currently pins fly-january 0.2.1.
+
 ## 2026-11-24 — documentation theme
 
 - `./build.sh docs` and the Docs workflow both use `src_docs/build.sh` and
