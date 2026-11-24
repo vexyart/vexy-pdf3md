@@ -8,7 +8,7 @@ and the [Git log](https://github.com/vexyart/vexy-pdf3md/commits/main).
 
 ### Documentation and packaging
 
-- Documentation site built from `src_docs/md/` with ProperDocs and fly-january 0.2.1 (chrome: none),
+- Documentation site built from `src_docs/md/` with ProperDocs and fly-january 0.3.0 or later (chrome: none),
   published at <https://vexy.dev/vexy-pdf3md/>.
 - `build.sh` builds the documentation and the package. `publish.sh` dispatches
   the GitHub Actions release workflow, which publishes to PyPI through Trusted Publishing.

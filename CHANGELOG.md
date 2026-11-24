@@ -5,6 +5,7 @@ this_file: CHANGELOG.md
 
 ## Unreleased
 
+- The documentation build accepts fly-january 0.3.0 or later.
 - Site now uses the fly-january 0.2.1 theme (chrome: none).
 - Build the documentation from `src_docs/md/` into `docs/` with `./build.sh docs`. The Docs workflow rebuilds the site on changes to its sources.
 - `./build.sh package` builds distributions locally. `./publish.sh` dispatches `release.yml` to build from a tag and publish through PyPI Trusted Publishing (`324c469`).
