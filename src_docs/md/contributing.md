@@ -66,7 +66,7 @@ to refresh the version of an editable install.
 ## Documentation
 
 The documentation source is `src_docs/md/`, configured by `src_docs/mkdocs.yml`.
-`src_docs/build.sh` uses Python 3.13, ProperDocs and fly-january 0.3.0 or later
+`src_docs/build.sh` uses Python 3.13, ProperDocs and fly-january 0.4.0 or later (remote theme assets)
 with `extra.fly.chrome` set to `none`. GitHub Pages serves the generated `docs/`
 directory at <https://vexy.dev/vexy-pdf3md/>.
 

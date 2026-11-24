@@ -193,7 +193,7 @@ uv build                                    # Git-derived version, wheel and sdi
 ./build.sh docs                             # strict documentation build into docs/
 ```
 
-The docs build uses Python 3.13 and fly-january 0.3.0 or later with
+The docs build uses Python 3.13 and fly-january 0.4.0 or later (remote theme assets) with
 `extra.fly.chrome` set to `none` in `src_docs/mkdocs.yml`.
 
 ## Publish
