@@ -926,7 +926,7 @@ hatch-vcs.</p>
 </tr>
 <tr>
 <td><code>tests/test_release.py</code></td>
-<td><code>publish.sh</code> behaviour in a throwaway Git repository</td>
+<td>Release workflow dispatch and error handling</td>
 </tr>
 </tbody>
 </table>
@@ -951,30 +951,17 @@ directory at <a href="https://vexy.dev/vexy-pdf3md/">https://vexy.dev/vexy-pdf3m
 <p>The <code>Docs</code> workflow (<code>.github/workflows/docs.yml</code>) rebuilds <code>docs/</code> on every push to
 <code>main</code> that changes <code>src_docs/</code> and commits the result.</p>
 <h2 id="release">Release<a aria-label="Permanent link" class="headerlink" href="#release" title="Permanent link">&para;</a></h2>
-<p>Prerequisites:</p>
-<ul>
-<li>a uv publish credential in the environment, for example <code>UV_PUBLISH_TOKEN</code>;</li>
-<li>push access to the Git remote.</li>
-</ul>
-<p>Steps:</p>
+<p>The PyPI project owner must configure a GitHub trusted publisher for
+<code>vexyart/vexy-pdf3md</code>, workflow <code>release.yml</code>, environment <code>pypi</code>.</p>
 <ol>
-<li>Run the checks: <code>./test.sh</code>.</li>
-<li>
-<p>Run the release script:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./publish.sh
-</code></pre></div>
-</li>
+<li>Run <code>./test.sh</code> and push the release commit to the default branch.</li>
+<li>With the GitHub CLI authenticated for this repository, run <code>./publish.sh</code>
+   for the next patch version, or pass an explicit tag such as <code>./publish.sh v1.4.0</code>.</li>
+<li>Check the Release workflow in GitHub Actions. The workflow creates the tag if
+   needed, builds the wheel and sdist from that tag, and attaches them to the
+   GitHub release. Its <code>pypi</code> job uploads the same artifacts using GitHub's OIDC identity.</li>
 </ol>
-<p><code>publish.sh</code> does the following:</p>
-<ol>
-<li>Runs <code>uvx gitnextver</code>, which stages and commits <strong>all non-ignored changes</strong>,
-   creates the next <code>vX.Y.Z</code> tag and pushes.</li>
-<li>Stops with an error if <code>HEAD</code> does not carry a <code>vX.Y.Z</code> tag. gitnextver only
-   creates a tag when there are changes to commit.</li>
-<li>Runs <code>./build.sh package</code>: removes <code>dist/</code>, builds the wheel and sdist, and runs
-   <code>twine check</code>.</li>
-<li>Uploads <code>dist/*</code> with <code>uv publish</code>.</li>
-</ol>
+<p>Pushing a <code>vMAJOR.MINOR.PATCH</code> tag directly also triggers the Release workflow.</p>
 
 
 

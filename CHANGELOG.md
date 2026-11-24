@@ -6,11 +6,9 @@ this_file: CHANGELOG.md
 ## Unreleased
 
 - Site now uses the fly-january 0.2.1 theme (chrome: none).
-- Add documentation site: `src_docs/md/` (11 pages) built with ProperDocs + MaterialX by
-  `src_docs/build.sh` into `docs/`, served at https://vexy.dev/vexy-pdf3md/; `Docs` workflow
-  rebuilds it on push to `main`.
-- Add `build.sh` (`all|docs|package`). Replace `publish.sh` with the shared gitnextver +
-  `./build.sh package` + `uv publish` flow; adapt `tests/test_release.py` to it.
+- Build the documentation from `src_docs/md/` into `docs/` with `./build.sh docs`. The Docs workflow rebuilds the site on changes to its sources.
+- `./build.sh package` builds distributions locally. `./publish.sh` dispatches `release.yml` to build from a tag and publish through PyPI Trusted Publishing (`324c469`).
+- The PyPI project owner must retain the GitHub trusted publisher used for 1.0.6 (`vexyart/vexy-pdf3md`, workflow `release.yml`, environment `pypi`). Restore it if missing.
 - Add project URLs and classifiers; anchor sdist includes to the repository root.
 - Stop tracking `.omc/` session state; ignore `node_modules/` and `site/`.
 
@@ -33,11 +31,8 @@ this_file: CHANGELOG.md
   measured on 123 localization style guides.
 
 - Generate and import gitignored `__version__.py` with the hatch-vcs build hook.
-- Add `publish.sh`: validate, clean generated dirt, commit/tag via `uvx gitnextver`,
-  verify pushes, build fresh tagged artifacts, and upload with `uv publish`.
 - Add isolated release-flow regression tests and build-before-test version generation.
 
-- Added Fire CLI (`vexy-pdf3md`, `pdf3md`, and `python -m vexy_pdf3md`) and Python API.
 - Added single-file and recursive-tree conversion, deterministic basenames, independent
   strategy suffixes, and generated media directories with relative links.
 - Added markit, PyMuPDF, pdf22md, Tesseract, and optional Docling adapters.
@@ -46,11 +41,16 @@ this_file: CHANGELOG.md
 - Added page selection, passwords, OCR controls/languages, DPI, and overwrite policy.
 - Added staged publication, collision detection, generated-media ownership checks,
   and preservation of previous output on ordinary publication failure.
-- Added synthetic-PDF regression tests, real OCR integrations, documentation of both
-  source projects, and a runnable smoke example.
 
 ## 2026-10-18: documentation plugins
 
 - Use MaterialX search, inherited metadata and a topic index; keep ordered navigation in awesome-nav.
 - The documentation wrapper installs the plugins required by this site.
 - Strict documentation build and rendered output checks passed.
+
+## 2026-09-10 implementation verification
+
+- Documented converter choices in `ANALYSIS.md` after verifying both source baselines (106 vexy-paraltext tests and 90 pdf22md tests passed, `b5a5d70`).
+- Defined acceptance tests for conversion, media, failures and CLI behaviour (47 tests passed with 89.30% coverage, `b5a5d70`).
+- Implemented the Python API and Fire CLI, including `python -m vexy_pdf3md`. Both installed wheel commands, `vexy-pdf3md` and `pdf3md`, converted a PDF with page images (`b5a5d70`).
+- Reviewed the implementation and verified all five backends (54 tests passed with 91.91% coverage, recorded in `WORK.md` at `b5a5d70`).

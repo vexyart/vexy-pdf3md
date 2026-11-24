@@ -1,6 +1,6 @@
 # Changelog
 
-Release versions come from Git tags (`v1.0.0` to `v1.0.4` so far). The full history
+Release versions come from Git tags. The full history
 is in [`CHANGELOG.md`](https://github.com/vexyart/vexy-pdf3md/blob/main/CHANGELOG.md)
 and the [Git log](https://github.com/vexyart/vexy-pdf3md/commits/main).
 
@@ -10,8 +10,8 @@ and the [Git log](https://github.com/vexyart/vexy-pdf3md/commits/main).
 
 - Documentation site built from `src_docs/md/` with ProperDocs and fly-january 0.2.1 (chrome: none),
   published at <https://vexy.dev/vexy-pdf3md/>.
-- `build.sh` builds the documentation and the package; `publish.sh` tags with
-  gitnextver, builds and uploads with `uv publish`.
+- `build.sh` builds the documentation and the package. `publish.sh` dispatches
+  the GitHub Actions release workflow, which publishes to PyPI through Trusted Publishing.
 
 ### Conversion
 

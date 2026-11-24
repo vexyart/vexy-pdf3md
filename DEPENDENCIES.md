@@ -15,7 +15,7 @@ this_file: DEPENDENCIES.md
 | Tesseract (external, optional) | Local OCR; also used by the Docling adapter |
 | hatchling / hatch-vcs | Wheel/sdist builds, versions derived from Git tags |
 | fly-january 0.2.1 (via uvx) | Theme and plugin for the ProperDocs site |
-| gitnextver (via uvx) | Commit source changes, create the next release tag, push Git |
+| GitHub CLI (`gh`) | Dispatch the release workflow from `publish.sh` |
 | pytest / pytest-cov | Regression/integration tests and subprocess coverage |
 | ruff / ty | Formatting, lint, and type checks |
 

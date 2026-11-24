@@ -200,18 +200,17 @@ The docs build uses Python 3.13 and the fly-january 0.2.1 theme with
 
 ```bash
 ./build.sh package    # clean dist/, uv build, twine check
-./publish.sh          # gitnextver commit + tag + push, then build and uv publish
+./publish.sh          # request the next patch release through GitHub Actions
 ```
 
 `hatch-vcs` derives versions from Git tags and generates the gitignored
 `src/vexy_pdf3md/__version__.py` during builds/installs. Rebuild or reinstall after
 changing tags to refresh editable-install versions; never commit the generated file.
 
-`publish.sh` runs `uvx gitnextver`, which stages and commits **all nonignored changes**,
-creates the next `vX.Y.Z` tag, and pushes. It stops if `HEAD` carries no such tag
-(gitnextver only tags when there are changes to commit). It then runs
-`./build.sh package` and uploads `dist/*` with `uv publish`. Configure uv publishing
-credentials, e.g. `UV_PUBLISH_TOKEN`, through your environment. Run `./test.sh` first.
+Run `./test.sh` and push the release commit to the default branch before running
+`./publish.sh`. The script uses the authenticated GitHub CLI to dispatch
+`release.yml`. GitHub Actions builds the tagged source, attaches the wheel and
+sdist to the GitHub release, and uploads them to PyPI through Trusted Publishing.
 
 See [ANALYSIS.md](ANALYSIS.md) for both source-project investigations and routing
 tradeoffs, [DEPENDENCIES.md](DEPENDENCIES.md) for dependency roles/licenses, and

@@ -1,7 +1,5 @@
 ---
 this_file: TODO.md
 ---
-- [x] Source analysis and baseline verification
-- [x] Define acceptance tests
-- [x] Implement package and CLI
-- [x] Verify integrations, review, and document results
+- [ ] Confirm the PyPI trusted publisher for `vexy-pdf3md`.
+- [ ] Recheck native scan OCR on macOS with a working `pdf22md` installation.

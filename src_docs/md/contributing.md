@@ -46,7 +46,7 @@ Tests marked `optional` need Docling and model downloads and are excluded by def
 | `tests/test_strategies.py` | Real converter integrations and injected converter failures |
 | `tests/test_failures.py` | Publication, process boundaries and path conflicts failing without data loss |
 | `tests/test_languages.py` | `--lang` mapping and Tesseract model handling |
-| `tests/test_release.py` | `publish.sh` behaviour in a throwaway Git repository |
+| `tests/test_release.py` | Release workflow dispatch and error handling |
 
 ## Versioning
 
@@ -80,26 +80,14 @@ The `Docs` workflow (`.github/workflows/docs.yml`) rebuilds `docs/` on every pus
 
 ## Release
 
-Prerequisites:
+The PyPI project owner must configure a GitHub trusted publisher for
+`vexyart/vexy-pdf3md`, workflow `release.yml`, environment `pypi`.
 
-- a uv publish credential in the environment, for example `UV_PUBLISH_TOKEN`;
-- push access to the Git remote.
+1. Run `./test.sh` and push the release commit to the default branch.
+2. With the GitHub CLI authenticated for this repository, run `./publish.sh`
+   for the next patch version, or pass an explicit tag such as `./publish.sh v1.4.0`.
+3. Check the Release workflow in GitHub Actions. The workflow creates the tag if
+   needed, builds the wheel and sdist from that tag, and attaches them to the
+   GitHub release. Its `pypi` job uploads the same artifacts using GitHub's OIDC identity.
 
-Steps:
-
-1. Run the checks: `./test.sh`.
-2. Run the release script:
-
-    ```bash
-    ./publish.sh
-    ```
-
-`publish.sh` does the following:
-
-1. Runs `uvx gitnextver`, which stages and commits **all non-ignored changes**,
-   creates the next `vX.Y.Z` tag and pushes.
-2. Stops with an error if `HEAD` does not carry a `vX.Y.Z` tag. gitnextver only
-   creates a tag when there are changes to commit.
-3. Runs `./build.sh package`: removes `dist/`, builds the wheel and sdist, and runs
-   `twine check`.
-4. Uploads `dist/*` with `uv publish`.
+Pushing a `vMAJOR.MINOR.PATCH` tag directly also triggers the Release workflow.

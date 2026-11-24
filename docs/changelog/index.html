@@ -816,7 +816,7 @@
 
 
 <h1 id="changelog">Changelog<a aria-label="Permanent link" class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
-<p>Release versions come from Git tags (<code>v1.0.0</code> to <code>v1.0.4</code> so far). The full history
+<p>Release versions come from Git tags. The full history
 is in <a href="https://github.com/vexyart/vexy-pdf3md/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a>
 and the <a href="https://github.com/vexyart/vexy-pdf3md/commits/main">Git log</a>.</p>
 <h2 id="unreleased">Unreleased<a aria-label="Permanent link" class="headerlink" href="#unreleased" title="Permanent link">&para;</a></h2>
@@ -824,8 +824,8 @@ and the <a href="https://github.com/vexyart/vexy-pdf3md/commits/main">Git log</a
 <ul>
 <li>Documentation site built from <code>src_docs/md/</code> with ProperDocs and fly-january 0.2.1 (chrome: none),
   published at <a href="https://vexy.dev/vexy-pdf3md/">https://vexy.dev/vexy-pdf3md/</a>.</li>
-<li><code>build.sh</code> builds the documentation and the package; <code>publish.sh</code> tags with
-  gitnextver, builds and uploads with <code>uv publish</code>.</li>
+<li><code>build.sh</code> builds the documentation and the package. <code>publish.sh</code> dispatches
+  the GitHub Actions release workflow, which publishes to PyPI through Trusted Publishing.</li>
 </ul>
 <h3 id="conversion">Conversion<a aria-label="Permanent link" class="headerlink" href="#conversion" title="Permanent link">&para;</a></h3>
 <ul>
